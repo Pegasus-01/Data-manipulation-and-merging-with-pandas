@@ -1,0 +1,285 @@
+Data Science Cheet Sheet
+Containing examples for understanding
+
+1. Heights of the goalkeepers: gk_heights-
+   gk_heights = np_heights[np_positions == 'GK']
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. str(np.median(gk_heights))                                                                       #for calculatung median
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Print out correlation between first and second column. Replace 'None'-
+   corr = np.corrcoef(np_baseball[:,0],np_baseball[:,1])
+   way to select specific columns
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. plt.plot(x,y) or plt.scatter(x,y)
+   plt.show() :for plotting and showing data in matplotlib
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5. del(europe['australia'])                                                                         #for deleting specific element from dictionary
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6. # Update capital of germany
+   europe['germany'] = 'berlin'                                                                     #for updting specific items in dictionary
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7. plt.clf() :for clearing plot
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8. Histogram of life_exp1950, 15 bins-
+   plt.hist(life_exp1950 , bins=15)    								    #for plotting histogram
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9. # Add axis labels
+	plt.xlabel(xlab)
+	plt.ylabel(ylab)
+   # Add title
+	plt.title(title)    									    #customization of plots
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10. # Definition of tick_val and tick_lab
+	tick_val = [1000, 10000, 100000]
+	tick_lab = ['1k', '10k', '100k']
+    # Adapt the ticks on the x-axis
+	plt.xticks(tick_val ,tick_lab)  							    #customization of ticks
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11. # Specify c and alpha inside plt.scatter()
+	plt.scatter(x = gdp_cap, y = life_exp, s = np.array(pop) * 0.8 , c = col , alpha = 0.8)     #from specific dataset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+12. #this function is called to draw the gridlines on the plot
+	plt.grid(True)  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13. # Building a DataFrame cars from dictionary ; my_dict: cars
+	cars = pd.DataFrame(my_dict)  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+14. # Definition of row_labels
+	row_labels = ['US', 'AUS', 'JPN', 'IN', 'RU', 'MOR', 'EG']
+    # Specify row labels of cars
+	cars.index = row_labels        								    #working on row levels
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+15. # Importing the cars.csv , a csv file to dataframe: cars
+	cars = pd.read_csv('cars.csv') 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+16. # Fixing importing of csv to dataframe by including index_col
+	cars = pd.read_csv('cars.csv',index_col = 0)
+	index_col = 0
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+17. # Print out country column as Pandas Series
+	print(cars['country'])
+    # Print out country column as Pandas DataFrame
+	print(cars[['country']])     							            #printing out column as pandas 
+										                     series and dataframes respectively
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+18. print(cars[3:6])   #printing out specific columns form a dataframe,in this case;4,5,6
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+19. # Print out observation for Japan
+	print(cars.loc['JPN'])
+	print(cars.iloc[2])   									   #printing out observations,
+                               									    'loc' uses the name and 'iloc' uses 
+												     the index number of the column
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+20. # Print out drives_right value of Morocco
+	print(cars.loc['MOR'],['drives_right'])     						   #printing out a specific value of a specific column form a dataset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+21. # Print out drives_right column as Series
+	print(cars.iloc[:,2])
+    # Print out drives_right column as DataFrame
+	print(cars.iloc[:,[2]])
+    # Print out cars_per_cap and drives_right as DataFrame
+	print(cars.iloc[:,[0,2]])                                                                  #printing a column as series,dataframe respectively and at the last
+					                                                            printing two columns
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+22. # Create car_maniac: observations that have a cars_per_cap over 500
+	cpc = cars['cars_per_cap']
+	many_cars = cpc > 500
+	car_maniac = cars[many_cars]         							   #way to create specific observation greater or less than a specific value
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+23. # Comparison of strings
+	True == False
+	"pyscript"=="PyScript"      								   #example of comaparison between strings
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+24. # Comparison of strings
+	y = "test"
+	print("test"<=y)           								   #printig of comparison between stirngs
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+25. # my_house less than your_house
+	print(my_house < your_house)       							   #comparison of arrays
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+26. # my_kitchen bigger than 10 and smaller than 18?
+	print(my_kitchen > 10 and my_kitchen < 18)
+    # my_kitchen smaller than 14 or bigger than 17?
+	print(my_kitchen < 14 or my_kitchen > 17)
+    # Double my_kitchen smaller than triple your_kitchen?
+	print(2*my_kitchen < 3* your_kitchen)                  					  #ways to print comparisons using 'and' 'or' 'not' 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+27. # my_house greater than 18.5 or smaller than 10
+	print(np.logical_or(my_house>18.5 , my_house<10))       				  #using logical or
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+28. # Change for loop to use enumerate() and update print()
+	for index, area in enumerate(areas):                   					  #using the enumerate() function
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+29. # Code the for loop
+	for index, area in enumerate(areas) :
+    		print("room " + str(index+1) + ": " + str(area))                                  #printing using indexes
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+30. # Iterate over europe
+	for key, string in europe.items():							  #for itereting/selecting loop over dictionary
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+31. # For loop over np_height
+	for key in np_height:
+	    print(str(key)+" inches")
+    # For loop over np_baseball
+	for element in np.nditer(np_baseball):
+	    print(str(element))    								  #commands for loop over numpy array
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+32. # Iterate over rows of cars
+	for lab, row in cars.iterrows() :
+   	   print(lab)
+    	   print(row)										  #command for itereting over a specific column of a specific dataset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+33. # Adapt for loop
+	for lab, row in cars.iterrows() :
+    	    print(lab + ": " + str(row['cars_per_cap']))					  #commands for adapting for loop form a dataset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+34. # Code for loop that adds COUNTRY column
+	for lab, row in cars.iterrows():
+    	   cars.loc[lab, "COUNTRY"] = row["country"].upper()					  #commands for adding a column to a dataframe with country name;here,"country"
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+35. # Use .apply(str.upper)
+	for lab, row in cars.iterrows() :
+    	  cars.loc[lab, "COUNTRY"] = row["country"].upper()
+	cars["COUNTRY"] = cars["country"].apply(str.upper)					  #using .apply(str.upper)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+36. # Set the seed
+	np.random.seed(123)
+    # Generate and print random float
+	print(np.random.rand())									  #setting and using random float
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+37. # Use randint() to simulate a dice
+	np.random.randint(1,7)
+    # Use randint() again
+	print(np.random.randint(1,7))
+	print(np.random.randint(1,7))								  #in case of rolling dice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+38. # Create and plot np_aw_t
+	np_aw_t = np.transpose(np.array(all_walks))						  #example of using transpose
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+39. # Print the head of the homelessness data
+	print(homelessness.head())
+    # Print information about homelessness
+	print(homelessness.info())
+    # Print the shape of homelessness
+	print(homelessness.shape)
+    # Print a description of homelessness
+	print(homelessness.describe())								  #commands for inspecting a dataframe
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+40. # Sort homelessness by individual
+	homelessness_ind = homelessness.sort_values("individuals")
+    # Sort homelessness by descending family members
+	homelessness_fam = homelessness.sort_values("family_members", ascending=False)
+    # Sort homelessness by region, then descending family members
+	homelessness_reg_fam = homelessness.sort_values(["region", "family_members"], ascending=[True, False])                                
+												  #using various types of sorting
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+41. # Select only the individuals and state columns, in that order
+	ind_state = homelessness[['individuals' , 'state']] 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+42. # Filter for rows where family_members is less than 1000
+    # and region is Pacific
+	fam_lt_1k_pac = homelessness[(homelessness["region"] == "Pacific") & (homelessness["family_members"] < 1000)]
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+43. # Subset for rows in South Atlantic or Mid-Atlantic regions
+	south_mid_atlantic = homelessness[(homelessness["region"] == "South Atlantic") | (homelessness["region"] == "Mid-Atlantic")]     
+												  #subsetting rows from region
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+44. # Add total col as sum of individuals and family_members
+	homelessness["total"] = homelessness["individuals"] + homelessness["family_members"]                                                
+												  #adding new columns
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+45. # Print the mean of weekly_sales
+	print(sales["weekly_sales"].mean())
+    # Print the median of weekly_sales
+	print(sales["weekly_sales"].median())							  #printing mean and median of specific rows
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+46. # Print the maximum of the date column
+	print(sales["date"].max())
+    # Print the minimum of the date column
+	print(sales["date"].min())								  #summarizing dates
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+47. # Get the cumulative sum of weekly_sales, add as cum_weekly_sales col
+	sales_1_1["cum_weekly_sales"] = sales_1_1["weekly_sales"].cumsum()
+    # Get the cumulative max of weekly_sales, add as cum_max_sales col
+	sales_1_1["cum_max_sales"] = sales_1_1["weekly_sales"].cummax()				  #commands for cumulative sum and cumulative max
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+48. # Subset the rows that are holiday weeks and drop duplicate dates
+	holiday_dates = sales[sales["is_holiday"]].drop_duplicates(subset="date")		  #dropping duplicates and subsetting
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+49. # Get the proportion of departments of each number and sort
+	dept_props_sorted = store_depts["department"].value_counts(sort=True, normalize=True)
+	print(dept_props_sorted)								  #sorint and normalizing and getting proportion
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+50. # Subset for type A stores, calc total weekly sales
+	sales_A = sales[sales["type"] == "A"]["weekly_sales"].sum()				  #subsetting by a type and getting sum
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+51. # Group by type and is_holiday; calc total weekly sales
+	sales_by_type_is_holiday = sales.groupby(("type","is_holiday"))["weekly_sales"].sum()
+	print(sales_by_type_is_holiday)								  #subsetting and using groupby on two types and within one column
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+52. # For each store type, aggregate unemployment and fuel_price_usd_per_l: get min, max, mean, and median
+	unemp_fuel_stats = sales.groupby("type")[["unemployment", "fuel_price_usd_per_l"]].agg([np.min, np.max, np.mean, np.median])
+												  #using "groupby" on one type and two columns  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+53. # Pivot for mean weekly_sales by store type and holiday
+	mean_sales_by_type_holiday = sales.pivot_table(values="weekly_sales" , index="type", columns="is_holiday")
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------												  #pivotting for multiple rows and columns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
