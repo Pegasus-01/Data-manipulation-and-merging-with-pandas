@@ -225,61 +225,23 @@ Containing examples for understanding
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 53. # Pivot for mean weekly_sales by store type and holiday
 	mean_sales_by_type_holiday = sales.pivot_table(values="weekly_sales" , index="type", columns="is_holiday")
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------												  #pivotting for multiple rows and columns
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+												  #pivotting for multiple rows and columns
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------												  
+54. # Index temperatures by city
+	temperatures_ind = temperatures.set_index("city")
+    # Look at temperatures_ind
+	print(temperatures_ind)
+    # Reset the index, keeping its contents
+	print(temperatures_ind.reset_index())
+    # Reset the index, dropping its contents
+	print(temperatures_ind.reset_index(drop=True))						 #SUBSETTING OPERATIONS
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+55. # Subset temperatures_ind using .loc[]
+	print(temperatures_ind.loc[cities])							 #subsetting with .loc[]
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+56. # Subset for rows to keep
+	print(temperatures_ind.loc[rows_to_keep])
+    #use ".set_index()";to set index.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+57. print(temperatures_ind.sort_index(level=["country","city"],ascending=[True,False]))          #sorting by index values
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
