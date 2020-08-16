@@ -251,3 +251,38 @@ Containing examples for understanding
 												 #Use : without first/last values to select all rows (or columns).
     df.iloc[1:2 , 3:4]											         #for slicing in both direction
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+60. dataframe["column"].dt.year									 #Access the year component of the column
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+61. # Get the mean temp by city
+	mean_temp_by_city = temp_by_country_city_vs_year.mean(axis="columns")                    #setting columns as axis
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+62. # Find the year that had the highest mean temp
+	print(mean_temp_by_year[mean_temp_by_year == mean_temp_by_year.max()])			 #finding max or in similar way,min
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+63. # Pivot avg_temp_c by country and city vs year
+	temp_by_country_city_vs_year = temperatures.pivot_table("avg_temp_c", index = ["country", "city"], columns = "year")
+												 #pivoting by setting columns and rows 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+64. # Get the mean temp by city
+	mean_temp_by_city = temp_by_country_city_vs_year.mean(axis="columns")			 #setting axis to column
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+65. # Get the total number of avocados sold of each size
+	nb_sold_by_size = avocados.groupby("size")["nb_sold"].sum()
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+66. # Create a bar plot of the number of avocados sold by size
+	nb_sold_by_size.plot(kind="bar")							 #using "kind"
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+67.# Modify bins to 20
+	avocados[avocados["type"] == "conventional"]["avg_price"].hist(alpha=0.5,bins=20)	 #modifying bin and alpha
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+68. # Check each column for missing values
+	print(avocados_2016.isna().any())
+    # Bar plot of missing values by variable
+	avocados_2016.isna().sum().plot(kind="bar")						 #checking and plotting for missing values
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+69. # Remove rows with missing values
+	avocados_complete = avocados_2016.dropna()
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+70. # Save as airline_totals_sorted.csv
+	airline_totals_sorted.to_csv("airline_totals_sorted.csv")				 #converting dataframe to csv
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
